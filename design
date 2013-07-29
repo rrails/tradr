@@ -1,0 +1,22 @@
+you select the share for which
+- html - for checkbox
+- how to trigger the graph (jquery)
+  bind a click handler to the check box on the screen using a class selector - done
+
+  find the share symbol - done
+  then post ajax request to the server for the stock details - to get the server to ask yahoo for the data that is required for the graph - in order to do this we need a route
+- routes file
+  the server gets a message - get a url with the stock symbol and a action that indicates that you want yahoo stuff
+  <contoller name>#<actionname> and parameter - which is either params (if get) or body of data (if post)
+
+- controller
+  controller has action def (which is from the url).
+  - this is most likely going to be a get - take symbol from params
+  - this will make call to yahoo. yahoo returns json object containing the graph data
+  - this is returned to the browser/view sending json data
+- back to jquery -
+  .done deals with async reponse
+  - call morris to diplay graph using data from callback
+  - formatting html
+
+- display the graph - html - we need selector where display graph

@@ -1,0 +1,12 @@
+%div#new_stock
+
+  %div#chart
+
+%div.row
+  %div.large-4.columns
+    %div.float
+      = link_to('Purchase new shares', new_stock_path, :remote => true, :class => 'button radius medium alert purchase')
+    %div.clear
+  %div.large-8.columns
+%ol#stocks
+  = render(:partial => 'stocks')

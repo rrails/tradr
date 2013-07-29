@@ -1,0 +1,79 @@
+Trader
+  morris.js - charts
+
+
+Model
+  users table
+  stocks table
+
+
+
+1. users
+2. foundation - installed
+    morris for graphs - installed
+    yahoo finance gem - installed
+    httpparty - installed
+    json - installed
+
+3. Edit routes file - to include login and users
+
+4.controllers - home controller
+                update application controller
+                session controller
+                users controller
+
+5.views
+    home  - index.html.haml and partial
+    session - new.html.haml
+
+
+
+
+
+
+
+
+    urls  - /users page - index page , show emails and balances, - balance = cash-on-hand plus current value of stock
+            /stocks = only show @auth.stocks
+              buy a stock
+              sell a stock
+            show last -50 quotes update every sec using timers. use set intervals.
+
+
+
+
+3. menu bar
+4. home controller
+          partials
+different views
+  look at stocks
+  buy stocks
+
+
+use ajax for stocks
+use ajax for
+
+
+
+pages /stock
+  home users  stocks
+
+  buy   <enter stock name > <enter stock qty> _ this must be done with ajax.
+  <display the stocks that each user has a stock boxes>
+  when a box has been ticked you display a graph of each stock
+    APPL What is the x and y axis for this?
+
+
+  graph
+
+  show the profit/
+
+
+page /users
+home  users   stocks
+
+add button      <email addrss>  <pwd>   <balance>
+
+
+
+

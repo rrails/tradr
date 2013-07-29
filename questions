@@ -1,0 +1,47 @@
+questions
+
+in application controller we have
+  before_filter :authenticate - what is this for?
+
+want to cover paths
+
+decimal - how do I enforce display with 2 decimals places for column type decimal
+
+  The user buys share
+    user enters the symbol
+    user enters  the qty
+      system
+        gets price from yahoo
+        calculates the cost of the shares
+        checks if the user has the balance
+        purchase shares
+        update the balance on user table
+        update the stock table
+
+
+  Display user details
+    get balance from user table
+    get the stock for the user
+    calculate the users current balance
+
+  display profitability
+    get the number of shares for a particular stock
+    get the current price and calculate the current value
+    get the purchase price and calculate the cost of shares
+
+    Where does all this logic go? In the controller?
+
+    where does the ajax code go?
+        this code goes in
+
+
+create a stock.js
+
+
+Things I want to do
+- checkbox size - can this be made bigger
+- including $ sign
+- combine email address with the amount - making sure this is refreshed.
+- what are the good practises of getting to elements on the screens without breaking everything else.
+
+

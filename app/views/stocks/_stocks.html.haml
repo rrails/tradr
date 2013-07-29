@@ -1,0 +1,9 @@
+%div.row
+  %div.small-7.columns
+    - @auth.stocks.each do |stock|
+      %div.row{:id => "stock_#{stock.symbol.upcase}"}
+        %div.stock_detail.small-5.columns
+          %span.stock_symbol= stock.symbol
+          %span.purchase_price= stock.purchase_price
+          %span.share_chart= check_box_tag 'checkbox',nil
+  %div.large-9.columns

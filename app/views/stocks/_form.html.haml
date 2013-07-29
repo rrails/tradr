@@ -1,0 +1,15 @@
+%div.row
+  %div.large-9.columns
+    = form_for @stock, :remote => true do |f|
+      %div.large-3.columns
+        = f.label :symbol
+        = f.text_field :symbol, :autofocus => true
+      %div.large-3.columns
+        = f.label :shares
+        = f.text_field :shares
+      / %div.large-3.columns
+      /   = f.label :purchase_price
+      /   = f.number_field :purchase_price
+      %div.large-3.columns
+        = f.submit 'buy', :class => 'button radius medium buy'
+  %div.large-9.columns
