@@ -3,6 +3,9 @@ class StocksController < ApplicationController
 
   def index
     @stocks = @auth.stocks
+    @stocks.each do |stock|
+      Stock.val(stock)
+    end
   end
 
   def new
@@ -10,21 +13,24 @@ class StocksController < ApplicationController
   end
 
   def create
-    @stock = Stock.create(params[:stock])
-    purchase_price = get_purchase_price(@stock.symbol)
-    total_price = purchase_price * @stock.shares
+
+    symbol = params[:stock][:symbol].upcase
+    shares = params[:stock][:shares].to_i
+    purchase_price = get_purchase_price(symbol)
+    total_price = purchase_price * shares
     if total_price < @auth.balance
-      @auth.balance = @auth.balance - total_price
-    @auth.save
-    @auth.stocks << @stock
-
-
+      @stock = Stock.where(:symbol => symbol).first || Stock.new(:symbol => symbol, :shares => 0)
+      @stock.shares += shares
+      @stock.save
+      @auth.balance -= total_price
+      @auth.stocks << @stock
+      @auth.save
+    # else
+      # @auth.errors.add(:base, "not sufficient money")
     end
-
     respond_to do |format|
       format.html {redirect_to(stocks_path)}
       format.js {render :create}
-
     end
   end
 
@@ -35,13 +41,9 @@ class StocksController < ApplicationController
   end
 
   def get_purchase_price(symbol)
-    symbol = symbol.upcase
     price = Stock.quote(symbol)
-    # price = YahooFinance::get_quotes(YahooFinance::StandardQuote, symbol)[symbol].lastTrade
     return price
   end
-
-
 
   private
   def only_authorised

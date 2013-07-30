@@ -13,18 +13,8 @@ return (curr_date + "-" + m_names[curr_month]
 
 $(document).ready(function() {
 
-  // var refresh_balance = function(){
-  //   find the position
-  //   create the html code
-  //   append to the position
-  //   var $user = $(this).closest('.useremail').html();
-  //   var $newbal = $('<li/>');
-  //   $('#newbal' + @auth.balance).after($useremail);
-  // }
-
   var toggle_form = function(){
     $('.purchase').toggle();
-    // return false;
   }
 
 
@@ -49,7 +39,6 @@ $(document).ready(function() {
     var $chartele = $('<div/>');
     $chartele.attr('id', 'graph_' + shares[0].symbol);
     $('#stock_' + shares[0].symbol).after($chartele);
-
     new Morris.Line({
         element: 'graph_' + shares[0].symbol,
         data: shares,
@@ -60,7 +49,7 @@ $(document).ready(function() {
         xLabelFormat: trader_format_date
     });
 }
-  $(document).on('click', '.share_chart :checkbox', display_chart);
+  $('.share_chart').on('change', ':checkbox', display_chart);
   $(document).on('click','.purchase',toggle_form);
 
 });

@@ -13,8 +13,13 @@
 
 class Stock < ActiveRecord::Base
   attr_accessible :symbol, :shares, :purchase_price
+  attr_accessor :current_val, :purchase_val
   belongs_to :user, :inverse_of => :stocks
 
+  def Stock.val(stock)
+    stock.current_val = Stock.quote(stock.symbol) * stock.shares
+    stock.purchase_val = stock.purchase_price  * stock.shares
+  end
 
   def Stock.quote(symbol)
     symbol = symbol.upcase

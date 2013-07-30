@@ -39,9 +39,15 @@ create a stock.js
 
 
 Things I want to do
-- checkbox size - can this be made bigger
-- including $ sign
-- combine email address with the amount - making sure this is refreshed.
+- checkbox size - can this be made bigger - this can't be done
+- including $ sign - Need to use number_to_ccy to display the amounts.
+- combine email address with the amount - making sure this is refreshed. - how do I do this?
 - what are the good practises of getting to elements on the screens without breaking everything else.
+- what is the difference between form_tag and form_for - need to understand that
 
 
+
+- stock table - should th number of shares be an integer on the stock purchase form?
+- stock controller - I have 2 responses json and html - how does that work?
+- stock controller - how do I flag an error?
+- I listen to $document - what can I change this to?

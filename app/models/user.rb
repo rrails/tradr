@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   attr_accessor :totalbal
   has_many :stocks, :inverse_of => :user
 
+
   def position
     self.stocks.map{|s| Stock.quote(s.symbol) * s.shares}.reduce(:+) || 0
   end

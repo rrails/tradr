@@ -1,6 +1,6 @@
 - @users.each do |user|
   %div.userlist
     %span.email= user.email
-    %span.balance= user.totalbal
+    %span.balance= number_to_currency user.totalbal
 
     / $(selector).text('$' + amount);
