@@ -16,6 +16,22 @@ class User < ActiveRecord::Base
   attr_accessor :totalbal
   has_many :stocks, :inverse_of => :user
 
+  def purchase_stock(symbol,shares)
+      quote = Stock.quote(symbol)
+      if (quote * shares) <= self.balance
+        #find the stock if it exists or creare a new stock
+        @stock = Stock.where(:symbol => symbol).first || Stock.new(:symbol => symbol, :shares => 0)
+        @stock.shares += shares
+        @stock.save
+        #update the user balance
+        self.balance -= (quote * shares)
+        #link the stock to user
+        self.stocks << @stock
+        self.save
+      else
+        self.errors.add(:base, "not sufficient money")
+      end
+  end
 
   def position
     self.stocks.map{|s| Stock.quote(s.symbol) * s.shares}.reduce(:+) || 0
@@ -25,19 +41,4 @@ class User < ActiveRecord::Base
     self.position + self.balance
   end
 
-  def purchase(symbol, shares)
-    symbol = symbol.upcase
-    stock = Stock.where(:symbol => symbol).first || Stock.new(:symbol => symbol, :shares => 0)
-    stock.shares += shares
-    stock.save
-    self.stocks << stock if self.stocks.exclude?(stock)
-    self.balance -= Stock.quote(symbol) * shares
-    self.save
-  end
-
-  def has_enough_money?(symbol, shares)
-    symbol = symbol.upcase
-    quote = Stock.quote(symbol)
-    (quote * shares) <= self.balance
-  end
 end

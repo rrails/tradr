@@ -51,3 +51,5 @@ Things I want to do
 - stock controller - I have 2 responses json and html - how does that work?
 - stock controller - how do I flag an error?
 - I listen to $document - what can I change this to?
+
+- how do you decide where the code should go - user.rb/controller.rb/helper.rb/? if you have code where you are updating both balance for the user and the stock - where should this logic go? Why do we have push stock for a user? Why does it n ot happen automatically since we have the link?

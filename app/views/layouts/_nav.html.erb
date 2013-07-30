@@ -10,9 +10,6 @@
         <% if @auth.present? %>
           <% det = @auth.email %>
           <li><%= link_to(det, login_path, :method => :delete, :class => 'button alert useremail') %><span id = 'balance' class= 'button alert'><%= number_to_currency @auth.balance%></span></li>
-
-<!-- <li><a href="<%= login_path %>" class="button alert useremail" data-method="delete"><%= det %></a><span id = 'balance' class= 'button'><%= number_to_currency @auth.balance %></span></li> -->
-
         <% else %>
           <li><%= link_to('Login', login_path, :class => 'button success') %></li>
         <% end %>
