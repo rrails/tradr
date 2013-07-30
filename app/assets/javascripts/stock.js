@@ -18,27 +18,37 @@ $(document).ready(function() {
   }
 
 
-  var display_chart = function(){
+  var process_share = function(){
     var symbol = $(this).closest('.stock_detail').find('.stock_symbol').html();
     var upsymbol = symbol.toUpperCase();
-    var chartele = $('#graph_'+ upsymbol);
-    if (chartele !== 'undefined') {
-      chartele.remove();
+    var chart_element = $('#graph_'+ upsymbol);
+
+    // Remove the graph if graph is displayed
+    if (chart_element !== 'undefined') {
+      chart_element.remove();
     }
+
+    // If checkbox is not checked then there is nothing to do
     if (!$(this).is(':checked')){
       return;
     }
+
+    // get historical data from server
     $.ajax({
       dataType: 'json',
       type: 'get',
       url: '/stocks/chartdata/' + symbol
-    }).done(process_share);
+      }).done(display_chart);
   };
 
-  var process_share = function(shares){
-    var $chartele = $('<div/>');
-    $chartele.attr('id', 'graph_' + shares[0].symbol);
-    $('#stock_' + shares[0].symbol).after($chartele);
+  var display_chart = function(shares){
+    // create chart element
+    var $chart_element = $('<div/>');
+    $chart_element.attr('id', 'graph_' + shares[0].symbol);
+
+    // append sock to chart element
+    $('#stock_' + shares[0].symbol).after($chart_element);
+
     new Morris.Line({
         element: 'graph_' + shares[0].symbol,
         data: shares,
@@ -49,8 +59,8 @@ $(document).ready(function() {
         xLabelFormat: trader_format_date
     });
 }
-  // $('.share_chart').on('click', ':checkbox', display_chart);
-  $(document).on('click', '.share_chart :checkbox', display_chart);
+
+  $(document).on('click', '.share_chart #checkbox', process_share);
   $(document).on('click','.purchase',toggle_form);
 
 });

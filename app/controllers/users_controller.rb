@@ -12,8 +12,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create(params[:user])
+    @user = User.create(params[:user])
     @users = User.order(:email)
+    session[:user_id] = @user.id
+
     respond_to do |format|
       format.html {redirect_to(users_path)}
     end
