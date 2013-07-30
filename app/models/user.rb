@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
         #update the user balance
         self.balance -= (quote * shares)
         #link the stock to user
-        self.stocks << @stock
+        self.stocks << @stock if self.stocks.exclude?(@stock)
         self.save
       else
         self.errors.add(:base, "not sufficient money")

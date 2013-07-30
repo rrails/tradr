@@ -49,7 +49,8 @@ $(document).ready(function() {
         xLabelFormat: trader_format_date
     });
 }
-  $('.share_chart').on('change', ':checkbox', display_chart);
+  // $('.share_chart').on('click', ':checkbox', display_chart);
+  $(document).on('click', '.share_chart :checkbox', display_chart);
   $(document).on('click','.purchase',toggle_form);
 
 });

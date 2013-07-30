@@ -16,9 +16,9 @@ class Stock < ActiveRecord::Base
   attr_accessor :current_val, :purchase_val
   belongs_to :user, :inverse_of => :stocks
 
-  def Stock.val(stock)
-    stock.current_val = Stock.quote(stock.symbol) * stock.shares
-    stock.purchase_val = stock.purchase_price  * stock.shares
+  def val
+    self.current_val = Stock.quote(self.symbol) * self.shares
+    self.purchase_val = self.purchase_price  * self.shares
   end
 
   def Stock.quote(symbol)
@@ -26,7 +26,7 @@ class Stock < ActiveRecord::Base
     YahooFinance::get_quotes(YahooFinance::StandardQuote, symbol)[symbol].lastTrade
   end
 
-  before_save :upcase_symbol, :get_purchase_price
+  before_save :upcase_symbol, :get_purchase_price, :val
   private
   def upcase_symbol
     self.symbol = self.symbol.upcase
@@ -35,4 +35,5 @@ class Stock < ActiveRecord::Base
   def get_purchase_price
     self.purchase_price = Stock.quote(self.symbol)
   end
+
 end

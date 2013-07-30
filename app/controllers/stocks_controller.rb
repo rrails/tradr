@@ -4,7 +4,7 @@ class StocksController < ApplicationController
   def index
     @stocks = @auth.stocks
     @stocks.each do |stock|
-      Stock.val(stock)
+      stock.val
     end
   end
 
@@ -13,7 +13,6 @@ class StocksController < ApplicationController
   end
 
   def create
-
     symbol = params[:stock][:symbol].upcase
     shares = params[:stock][:shares].to_i
     @auth.purchase_stock(symbol,shares)
