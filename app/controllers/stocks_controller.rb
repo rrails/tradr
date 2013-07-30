@@ -28,6 +28,8 @@ class StocksController < ApplicationController
     # else
       # @auth.errors.add(:base, "not sufficient money")
     end
+binding.pry
+
     respond_to do |format|
       format.html {redirect_to(stocks_path)}
       format.js {render :create}
