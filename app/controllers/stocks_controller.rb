@@ -23,9 +23,7 @@ class StocksController < ApplicationController
   end
 
   def chartdata
-    symbol = params[:symbol];
-    result = YahooFinance::get_HistoricalQuotes_days(symbol,30)
-    render :json => result
+      render :json => Stock.historical(params[:symbol])
   end
 
   private

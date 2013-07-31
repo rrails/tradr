@@ -9,7 +9,7 @@
         <% end %>
         <% if @auth.present? %>
           <% det = @auth.email %>
-          <li><%= link_to(det, login_path, :method => :delete, :class => 'button alert useremail') %><span id = 'balance' class= 'button alert'><%= number_to_currency @auth.balance%></span></li>
+          <li id = 'balance' class= 'button alert'><%= link_to(det, login_path, :method => :delete ) %> <%= number_to_currency @auth.balance%></li>
         <% else %>
           <li><%= link_to('Login', login_path, :class => 'button success') %></li>
         <% end %>

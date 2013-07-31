@@ -26,7 +26,12 @@ class Stock < ActiveRecord::Base
     YahooFinance::get_quotes(YahooFinance::StandardQuote, symbol)[symbol].lastTrade
   end
 
-  before_save :upcase_symbol, :get_purchase_price, :val
+  def Stock.historical(symbol)
+    symbol = symbol.upcase
+    return YahooFinance::get_HistoricalQuotes_days(symbol,30)
+  end
+
+  before_save :upcase_symbol, :get_purchase_price
   private
   def upcase_symbol
     self.symbol = self.symbol.upcase

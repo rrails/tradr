@@ -46,7 +46,6 @@ Things I want to do
 - what is the difference between form_tag and form_for - need to understand that
 
 
-
 - stock table - should th number of shares be an integer on the stock purchase form?
 - stock controller - I have 2 responses json and html - how does that work?
 - stock controller - how do I flag an error?
